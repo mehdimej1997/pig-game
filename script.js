@@ -67,16 +67,16 @@ btnHold.addEventListener('click', function () {
       currentScore;
     document.querySelector(`#score--${activePlayer}`).textContent =
       scores[activePlayer];
-    if (scores[activePlayer] > 10) {
+    if (scores[activePlayer] > 50) {
       console.log(activePlayer + '==');
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.add('player--winner');
       playing = false;
+    } else {
+      activePlayer = activePlayer == 0 ? 1 : 0;
+      switchPlayer();
     }
-    activePlayer = activePlayer == 0 ? 1 : 0;
-
-    switchPlayer();
   }
 });
 
@@ -84,7 +84,6 @@ btnNew.addEventListener('click', function () {
   scores[0] = 0;
   scores[1] = 0;
   currentScore = 0;
-  activePlayer = 0;
   playing = true;
   scoreOne.textContent = scores[0];
   scoreTwo.textContent = scores[1];
@@ -95,4 +94,5 @@ btnNew.addEventListener('click', function () {
   document
     .querySelector(`.player--${activePlayer}`)
     .classList.remove('player--winner');
+  activePlayer = 0;
 });
